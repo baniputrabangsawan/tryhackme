@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101313" />
+    <meta name="description" content="Lab lokal sederhana untuk mempelajari kelemahan validasi form di sisi klien." />
+    <title>FormBreak — Lab Validasi Lokal</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#main" aria-label="FormBreak, kembali ke konten utama">
+        <span class="brand-mark" aria-hidden="true">FB</span>
+        <span>FormBreak</span>
+      </a>
+      <span class="local-badge"><span aria-hidden="true"></span> Lab lokal</span>
+    </header>
+
+    <main id="main" class="shell">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">LATIHAN 01 · CLIENT-SIDE TRUST</p>
+        <h1 id="page-title">Bisakah kamu mendapatkan akses admin?</h1>
+        <p class="lede">
+          Form ini sengaja dibuat lemah. Pelajari HTML-nya, ubah request di browser,
+          lalu temukan mengapa validasi sisi klien tidak boleh dipercaya.
+        </p>
+
+        <div class="notice" role="note">
+          <span class="notice-icon" aria-hidden="true">!</span>
+          <p><strong>Aman untuk latihan lokal.</strong> Tidak ada data yang dikirim ke internet. Jangan gunakan teknik ini pada sistem tanpa izin.</p>
+        </div>
+
+        <ol class="objectives" aria-label="Tujuan latihan">
+          <li><span>01</span><p>Masuk sebagai pengguna biasa.</p></li>
+          <li><span>02</span><p>Periksa elemen form melalui DevTools.</p></li>
+          <li><span>03</span><p>Dapatkan respons <code>ADMIN_GRANTED</code>.</p></li>
+        </ol>
+      </section>
+
+      <section class="lab-card" aria-labelledby="form-title">
+        <div class="card-head">
+          <div>
+            <p class="terminal-label">auth.practice.local</p>
+            <h2 id="form-title">Masuk ke portal</h2>
+          </div>
+          <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        </div>
+
+        <form id="login-form">
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" value="siswa@academy.local" autocomplete="username" spellcheck="false" required />
+          </div>
+
+          <div class="field">
+            <div class="label-row">
+              <label for="password">Kata sandi</label>
+              <span>min. 8 karakter</span>
+            </div>
+            <div class="password-wrap">
+              <input id="password" name="password" type="password" value="belajar123" minlength="8" autocomplete="current-password" required />
+              <button class="show-password" type="button" aria-label="Tampilkan kata sandi" aria-pressed="false">Lihat</button>
+            </div>
+          </div>
+
+          <!-- KERENTANAN SENGAJA: aplikasi memercayai nilai role dari browser. -->
+          <input type="hidden" name="role" value="user" />
+
+          <button class="submit-button" type="submit">
+            <span>Kirim request</span><span aria-hidden="true">→</span>
+          </button>
+        </form>
+
+        <div class="response-panel" aria-live="polite" aria-atomic="true">
+          <div class="response-head">
+            <span>RESPONS SIMULASI</span>
+            <span id="status-code">MENUNGGU</span>
+          </div>
+          <pre id="response-output"><code>{
+  "status": "ready",
+  "message": "Kirim form untuk memulai."
+}</code></pre>
+        </div>
+
+        <div class="actions">
+          <button id="hint-button" class="text-button" type="button">Buka petunjuk 1/3</button>
+          <button id="reset-button" class="text-button muted" type="button">Reset lab</button>
+        </div>
+        <p id="hint" class="hint" hidden></p>
+      </section>
+    </main>
+
+    <footer>
+      <p>FormBreak v1.0 · Dibuat untuk lingkungan belajar yang kamu miliki atau diizinkan.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
